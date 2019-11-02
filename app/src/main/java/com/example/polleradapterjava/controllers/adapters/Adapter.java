@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.polleradapterjava.controllers.viewholders.UserItemInteraction;
 import com.example.polleradapterjava.models.Model;
 import com.example.polleradapterjava.R;
 import com.example.polleradapterjava.controllers.viewholders.ViewHolder;
@@ -35,13 +36,21 @@ public class Adapter extends RecyclerView.Adapter<ViewHolder> {
 
         final Model data = users.get(position);
         holder.bindData(data);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                holder.setOnClickListener(data, position);
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                holder.setOnClickListener(data, position);
+//            }
+//        });
 
+
+        holder.setOnUserHolderListener(listener,data);
+
+    }
+
+    private UserItemInteraction listener = null;
+    public void setListener(UserItemInteraction listener) {
+        this.listener = listener;
     }
 
     @Override

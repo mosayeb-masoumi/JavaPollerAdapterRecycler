@@ -1,5 +1,6 @@
 package com.example.polleradapterjava.controllers.viewholders;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,9 +27,23 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         txtlastname.setText(data.lastname);
     }
 
-    public void setOnClickListener(Model data, int position) {
+//    public void setOnClickListener(Model data, int position) {
+//
+//        Toast.makeText(itemView.getContext(), ""+data.name + " "+
+//                data.getLastname()+" " + position, Toast.LENGTH_SHORT).show();
+//    }
 
-        Toast.makeText(itemView.getContext(), ""+data.name + " "+
-                data.getLastname()+" " + position, Toast.LENGTH_SHORT).show();
+    public void setOnUserHolderListener(final UserItemInteraction listener, final Model data) {
+
+        Context context = itemView.getContext();
+
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                listener.onClicked(data.name,data.lastname);
+
+            }
+        });
     }
 }
